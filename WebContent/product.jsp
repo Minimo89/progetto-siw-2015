@@ -10,30 +10,17 @@
 </head>
 <body>
 <f:view>
+<h1>${productController.product.name}</h1>
+
+<h2>Dettagli:</h2>
+<div>Codice: ${productController.product.code}</div>
+<div>Prezzo: ${productController.product.price}</div>
+<div>Quantità: ${productController.product.depositQuantity}</div>
+<div>Descrizione: ${productController.product.description}</div>
 <h:form>
-	<table>
-	<thead>
-		<tr>
-		<th>Nome</th>
-		<th>Prezzo</th>
-		<th></th>
-	</tr>
-	</thead>
-	<tbody>
-	<c:forEach var="product" items="#{productController.products }">
-		<tr>
-			<td>${product.name }</td>
-			<td>${product.price }</td>
-			<td><h:commandButton  value="Dettagli" action="#{productController.findProduct}">
-					<f:param name="id" value="#{product.id }"/>
-			</h:commandButton></td>
-			
-		</tr>
-	</c:forEach>
-	</tbody>
-	</table>
-	<div><a href="<c:url value="/faces/index.jsp"/>">Home</a></div>
+<div><h:commandLink value="Listino" action="#{productController.getAllProducts }"/></div>
 </h:form>
+<div><a href="<c:url value="/faces/index.jsp"/>">Home</a></div>
 
 </f:view>
 </body>

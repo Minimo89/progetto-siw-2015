@@ -7,10 +7,13 @@ import it.uniroma3.model.Product;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 
 @ManagedBean
 public class ProductController {
 	
+	@ManagedProperty(value = "#{param.id}")
+	private Long id;
 	private String description;
 	private Integer depositQuantity;
 	private String name;
@@ -31,6 +34,11 @@ public class ProductController {
 	public String getAllProducts(){
 		this.products = this.productFacade.getAllProducts();
 		return "faces/products.jsp";
+	}
+	
+	public String findProduct(){
+		this.product = this.productFacade.findProduct(id);
+		return "faces/product.jsp";
 	}
 
 	public String getDescription() {
@@ -87,6 +95,14 @@ public class ProductController {
 
 	public void setProducts(List<Product> products) {
 		this.products = products;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 	

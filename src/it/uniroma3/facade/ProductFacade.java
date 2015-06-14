@@ -27,5 +27,10 @@ public class ProductFacade {
 		products = this.em.createNamedQuery("getAllProducts").getResultList();
 		return products;
 	}
+	
+	public Product findProduct(Long id){
+		Product product = this.em.find(Product.class, id);
+		return product;
+	}
 
 }
