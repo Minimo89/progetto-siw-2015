@@ -91,6 +91,13 @@ public class Orders {
 		this.orderLines = orderLines;
 	}
 	
+	public int hashCode(){
+		return this.creationDate.hashCode() + this.customer.hashCode();
+	}
 	
+	public boolean equals(Object o){
+		Orders order = (Orders) o;
+		return this.creationDate.equals(order.getCreationDate()) && this.customer.equals(order.getCustomer());
+	}
 
 }

@@ -99,6 +99,13 @@ public class Product {
 		this.providers = providers;
 	}
 	
-		
+	public int hashCode(){
+		return this.name.hashCode() + this.code.hashCode();
+	}
+	
+	public boolean equals(Object o ){
+		Product p = (Product) o;
+		return this.name.equals(p.getName()) && this.code.equals(p.getCode());
+	}
 
 }

@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "tb_admin")
+@NamedQuery(name = "getAdminByUsername", query = "SELECT a FROM Admin a WHERE a.username = :username")
 public class Admin {
 	
 	@Id
@@ -49,6 +50,13 @@ public class Admin {
 		this.password = password;
 	}
 	
+	public int hashCode(){
+		return this.username.hashCode();
+	}
 	
+	public boolean equals(Object o){
+		Admin a = (Admin) o;
+		return this.username.equals(a.getUsername());
+	}
 
 }

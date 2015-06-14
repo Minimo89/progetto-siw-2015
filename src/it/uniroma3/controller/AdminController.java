@@ -28,6 +28,25 @@ public class AdminController {
 		return "faces/registrationComplete.jsp";
 	}
 	
+	public String logIn(){
+		Admin admin = this.adminFacade.credentialCheck(this.username, this.password);
+		if(admin != null){
+			this.id = admin.getId();
+			this.admin = admin;
+			return "faces/adminIndex.jsp";
+		}
+		else
+			return "faces/index.jsp";
+	}
+	
+	public String logOut(){
+		this.admin = null;
+		this.id = null;
+		this.password = null;
+		this.username = null;
+		return "faces/index.jsp";
+	}
+	
 	public Long getId() {
 		return id;
 	}

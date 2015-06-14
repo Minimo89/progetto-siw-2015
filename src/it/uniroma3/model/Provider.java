@@ -90,6 +90,13 @@ public class Provider {
 		this.address = address;
 	}
 	
+	public int hashCode(){
+		return this.name.hashCode() + this.vatin.hashCode();
+	}
 	
+	public boolean equals(Object o){
+		Provider p = (Provider) o;
+		return this.name.equals(p.getName()) && this.vatin.equals(p.getVatin());
+	}
 
 }

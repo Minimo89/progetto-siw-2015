@@ -17,5 +17,19 @@ public class AdminFacade {
 		this.em.persist(admin);
 		return admin;
 	}
+	
+	public Admin credentialCheck(String username, String password){
+		Admin admin;
+		try{
+			admin = (Admin) this.em.createNamedQuery("getAdminByUsername").setParameter("username", username).getSingleResult();
+		} catch(Exception e){
+			e.getStackTrace();
+			return null;
+		}
+		if(admin.getPassword().equals(password))
+			return admin;
+		else
+			return null;
+	}
 
 }

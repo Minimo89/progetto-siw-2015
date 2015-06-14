@@ -141,7 +141,15 @@ public class Customer {
 		this.orders = orders;
 	}
 	
+	public int hashCode(){
+		return this.firstName.hashCode() + this.lastName.hashCode() + this.username.hashCode() + this.password.hashCode();
+	}
 	
+	public boolean equals(Object o){
+		Customer c = (Customer) o;
+		return this.firstName.equals(c.getFirstName()) && this.lastName.equals(c.getLastName()) && this.username.equals(c.getUsername())
+				&& this.password.equals(c.getPassword());
+	}
 	
 	
 

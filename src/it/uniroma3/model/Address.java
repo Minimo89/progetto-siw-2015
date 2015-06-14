@@ -85,6 +85,14 @@ public class Address {
 		this.zipcode = zipcode;
 	}
 	
+	public int hashCode(){
+		return this.state.hashCode() + this.street.hashCode() + this.city.hashCode() + this.country.hashCode() + this.zipcode.hashCode();
+	}
 	
+	public boolean equals(Object o){
+		Address a = (Address) o;
+		return this.city.equals(a.getCity()) && this.country.equals(a.getCountry()) && this.state.equals(a.getState()) && this.street.equals(a.getStreet())
+				&& this.zipcode.equals(a.getZipcode());
+	}
 
 }

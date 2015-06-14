@@ -74,6 +74,14 @@ public class OrderLine {
 		this.product = product;
 	}
 	
+	public int hashCode(){
+		return this.quantity.hashCode() + this.price.hashCode() + this.order.hashCode() + this.product.hashCode();
+	}
 	
+	public boolean equals(Object o){
+		OrderLine ol = (OrderLine) o;
+		return this.quantity.equals(ol.getQuantity()) && this.price.equals(ol.getPrice()) && this.order.equals(ol.getOrder())
+				&& this.product.equals(ol.getProduct());
+	}
 
 }
