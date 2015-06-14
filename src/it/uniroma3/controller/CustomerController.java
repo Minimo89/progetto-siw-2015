@@ -53,7 +53,12 @@ public class CustomerController {
 		}
 		else{
 			this.customer = this.customerFacade.createCustomer(this.firstName, this.lastName, this.username, this.password, date, this.phoneNumber, this.street, this.city, this.country, this.state, this.zipcode);
-			this.id = this.customer.getId();
+			this.firstName = null;
+			this.lastName = null;
+			this.username = null;
+			this.password = null;
+			this.phoneNumber = null;
+			this.dateOfBirth = null;
 			this.city = null;
 			this.country = null;
 			this.state = null;
@@ -73,6 +78,34 @@ public class CustomerController {
 			e.printStackTrace();
 		}
 		return dateOfBirth;
+	}
+	
+	public String logIn(){
+		Customer customer = this.customerFacade.credentialCheck(this.username, this.password);
+		//System.out.println(customer.getFirstName());
+		if(customer != null){
+			this.customer = customer;
+			this.id = customer.getId();
+			this.firstName = this.customer.getFirstName();
+			this.lastName = this.customer.getLastName();
+			this.username = this.customer.getUsername();
+			this.password = this.customer.getPassword();
+			this.phoneNumber = this.customer.getPhoneNumber();
+			return "faces/customerIndex.jsp";
+		}
+		else
+			return "faces/index.jsp";
+	}
+	
+	public String logOut(){
+		this.customer = null;
+		this.id = null;
+		this.firstName = null;
+		this.lastName = null;
+		this.username = null;
+		this.password = null;
+		this.phoneNumber = null;
+		return "faces/index.jsp";
 	}
 	
 	

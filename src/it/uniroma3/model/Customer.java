@@ -9,6 +9,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name =  "tb_customer")
+@NamedQuery(name = "getCustomerByUsername", query = "SELECT c FROM Customer c WHERE c.username = :username")
 public class Customer {
 	
 	@Id

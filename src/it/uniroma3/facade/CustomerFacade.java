@@ -20,5 +20,20 @@ public class CustomerFacade {
 		this.em.persist(customer);
 		return customer;
 	}
+	
+	public Customer credentialCheck(String username, String password){
+		Customer customer;
+		try{
+			customer = (Customer) this.em.createNamedQuery("getCustomerByUsername").setParameter("username", username).getSingleResult();
+		} catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+		if(customer.getPassword().equals(password))
+			return customer;
+		else{
+			return null;
+		}
+	}
 
 }
