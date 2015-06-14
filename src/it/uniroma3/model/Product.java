@@ -6,6 +6,7 @@ import java.util.*;
 
 @Entity
 @Table(name = "tb_product")
+@NamedQuery(name = "getAllProducts", query = "SELECT p FROM Product p")
 public class Product {
 	
 	@Id

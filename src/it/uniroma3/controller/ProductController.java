@@ -1,5 +1,7 @@
 package it.uniroma3.controller;
 
+import java.util.List;
+
 import it.uniroma3.facade.ProductFacade;
 import it.uniroma3.model.Product;
 
@@ -16,12 +18,19 @@ public class ProductController {
 	private String code;
 	private Product product;
 	
+	private List<Product> products;
+	
 	@EJB(beanName = "pFacade")
 	private ProductFacade productFacade;
 	
 	public String createProduct(){
 		this.product = this.productFacade.createProduct(this.name, this.code, this.description, this.depositQuantity, this.price);
 		return "faces/productAdded.jsp";
+	}
+	
+	public String getAllProducts(){
+		this.products = this.productFacade.getAllProducts();
+		return "faces/products.jsp";
 	}
 
 	public String getDescription() {
@@ -70,6 +79,14 @@ public class ProductController {
 
 	public void setProduct(Product product) {
 		this.product = product;
+	}
+
+	public List<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(List<Product> products) {
+		this.products = products;
 	}
 	
 	

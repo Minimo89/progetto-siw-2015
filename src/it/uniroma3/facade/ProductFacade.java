@@ -1,5 +1,8 @@
 package it.uniroma3.facade;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import it.uniroma3.model.Product;
 
 import javax.ejb.Stateless;
@@ -16,6 +19,13 @@ public class ProductFacade {
 		Product product = new Product(name, code, description, depositQuantity, price);
 		this.em.persist(product);
 		return product;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Product> getAllProducts(){
+		List<Product> products = new LinkedList<Product>();
+		products = this.em.createNamedQuery("getAllProducts").getResultList();
+		return products;
 	}
 
 }
