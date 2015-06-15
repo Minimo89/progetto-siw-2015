@@ -35,5 +35,16 @@ public class CustomerFacade {
 			return null;
 		}
 	}
+	
+	public Customer findCustomer(Long id){
+		Customer customer;
+		try{
+			customer = this.em.find(Customer.class, id);
+		} catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+		return customer;
+	}
 
 }

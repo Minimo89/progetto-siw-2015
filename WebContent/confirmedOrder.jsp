@@ -10,16 +10,9 @@
 </head>
 <body>
 <f:view>
-<h1>Profilo di ${customerController.customer.firstName} ${customerController.customer.lastName}</h1>
-<h:form>
-<div>
-		<div><h:commandLink value="Listino" action="#{productController.getAllProductsLogged }"/></div>
-		<h:commandButton value="Carrello" action="#{orderController.getCurrentOrder}">
-			<f:param name="customerId" value="#{customerController.id }"/>
-			</h:commandButton>
-		<h:commandButton value = "Logout" action = "#{customerController.logOut}"/>
-</div>
-</h:form>
+ordine confermato e in attesa di essere evaso
+
+<div><a href="<c:url value="/faces/customerIndex.jsp"/>">Home</a></div>
 </f:view>
 </body>
 </html>

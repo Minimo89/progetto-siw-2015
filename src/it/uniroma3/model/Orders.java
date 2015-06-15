@@ -9,6 +9,10 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "tb_orders")
+@NamedQueries({
+				@NamedQuery(name = "getCart", query = "SELECT o FROM Orders o WHERE o.closeDate is null and o.customer = :customer"),
+				@NamedQuery(name = "getCustomersOrders", query = "SELECT o FROM Orders o WHERE o.customer = :customer")
+})
 public class Orders {
 	
 	@Id
@@ -19,18 +23,16 @@ public class Orders {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date creationDate;
 	
-	@Column(nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date closeDate;
 	
-	@Column(nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date evasionDate;
 	
 	@ManyToOne
 	private Customer customer;
 	
-	@OneToMany(mappedBy = "order")
+	@OneToMany(mappedBy = "order", cascade = {CascadeType.PERSIST})
 	private List<OrderLine> orderLines;
 	
 	public Orders(){
@@ -89,6 +91,10 @@ public class Orders {
 
 	public void setOrderLines(List<OrderLine> orderLines) {
 		this.orderLines = orderLines;
+	}
+	
+	public void addOrderLine(OrderLine orderLine){
+		this.orderLines.add(orderLine);
 	}
 	
 	public int hashCode(){
