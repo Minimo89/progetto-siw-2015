@@ -14,10 +14,8 @@
 	<table>
 	<thead>
 		<tr>
-		<th>Nome</th>
-		<th>Prezzo</th>
-		<th>Quantita</th>
-		<th></th>
+		<td>Nome</td>
+		<td>Prezzo</td>
 	</tr>
 	</thead>
 	<tbody>
@@ -25,7 +23,6 @@
 		<tr>
 			<td>${product.name }</td>
 			<td>${product.price }</td>
-			<td><h:inputText value="#{productController.quantity}"/></td>
 			<td><h:commandButton  value="Acquista" action="#{productController.buyProduct }">
 				<f:param name="customerId" value="#{customerController.id }"/>
 				<f:param name = "id" value="#{product.id }"/>
@@ -34,6 +31,7 @@
 	</c:forEach>
 	</tbody>
 	</table>
+	<div>Quantità <h:inputText value="#{productController.quantity}"/></div>
 	<div><a href="<c:url value="/faces/customerIndex.jsp"/>">Home</a></div>
 </h:form>
 

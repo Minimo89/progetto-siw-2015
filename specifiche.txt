@@ -1,0 +1,75 @@
+Caso d'uso UC1: Consulta listino
+Attore primario: Utente non registrato
+Scenario principale di successo:
+
+1.	L'utente seleziona l'attività "Consulta catalogo".
+2.	Il sistema mostra l'elenco dei prodotti nel catalogo.
+3.	L'utente seleziona l'Id di un prodotto. Il Sistema mostra i dettagli del prodotto selezionato.
+
+L'utente ripete il passo 3 finchè non indica che ha terminato.
+
+********************************************************************************************************************************************************************
+
+Caso d'uso UC2: Effettua un ordine
+Attore primario: Cliente (utente registrato)
+Scenario principale di successo:
+
+1.	L'utente inserisce lo username e la password. Il Sistema verifica la correttezza dei dati e mostra nome e cognome dell'utente.
+2.	L'utente seleziona l'attivita "Effettua ordine".
+3.	Il sistema mostra l'elenco dei prodotti nel catalogo.
+4.	L'utente seleziona l'Id del prodotto che vuole aggiungere all'ordine e la quantità. Il sistema aggiunge il prodotto all'ordine nella quantità indicata dall'utente.
+
+Il cliente ripete i passi 3 e 4 finchè non indica che ha terminato.
+
+5.Il Sistema registra l'ordine impostando la data di chiusura dell'ordine.
+
+********************************************************************************************************************************************************************
+
+Caso d'uso UC3: Consulta propri ordini
+Attore primario: Cliente (utente registrato)
+Scenario principale di successo:
+
+1.	L'utente inserisce lo username e la password. Il Sistema verifica la correttezza dei dati e mostra nome e cognome dell'utente.
+2.	L'utente seleziona l'attività "Visualizza Ordini".
+3.	Il sistema mostra l'elenco degli ordini del cliente, mostrando per ogni ordine la data di chiusura e la data di evasione.
+4.	L'utente seleziona l'Id di un ordine. Il sistema mostra tutti i prodotti inseriti nell'ordine con relativi quantita acquistata e prezzo unitario.
+
+L'utente ripete i passi 3 e 4 finchè non indica che ha terminato.
+
+********************************************************************************************************************************************************************
+
+Caso d'uso UC4: Inserimento nuovo prodotto
+Attore primario: Amministratore (utente registrato)
+Scenario principale di successo:
+
+1.	L'utente inserisce lo username email e la password. Il Sistema verifica la correttezza dei dati e mostra lo username dell'utente.
+2.	L'utente seleziona l'attività "Inserisci nuovo prodotto".
+3.	L'utente inserisci i dati del nuovo prodotto. Il sistema registra tutti i dati relativi al prodotto, assegna un identificatore al nuovo prodotto e lo registra.
+
+L'utente ripete il passo 3 finchè non indica che ha terminato.
+
+********************************************************************************************************************************************************************
+
+Caso d'uso UC5: Recupera informazioni cliente
+Attore primario: Amministratore (utente registrato)
+Scenario principale di successo:
+
+1.	L'utente inserisce lo username email e la password. Il Sistema verifica la correttezza dei dati e mostra lo username dell'utente.
+2.	L'utente seleziona l'attività "Recupera Informazioni".
+3.	Il sistema mostra l'elenco di tutti gli ordini presenti.
+4.	L'utente seleziona l'Id di un ordine. Il sistema mostra tutti i dati relativi al cliente che ha effettuato l'ordine selezionato.
+
+L'utente ripete i passi 3 e 4 finchè non indica che ha terminato.
+
+********************************************************************************************************************************************************************
+
+Caso d'uso UC6: Evasione ordine
+Attore primario: Amministratore (utente registrato)
+Scenario principale di successo:
+
+1.	L'utente inserisce lo username email e la password. Il Sistema verifica la correttezza dei dati e mostra lo username dell'utente.
+2.	L'utente seleziona l'attività "Evadi Ordine".
+3.	Il sistema mostra l'elenco di tutti gli ordini chiusi ma non ancora evasi.
+4.	L'utente seleziona l'Id di un ordine. Il sistema verivica la dispoibilità di tutti i prodotti presenti nell'ordine, aggiorna la quantitaà di prodotti presenti 	 	nel magazzino e imposta la data di evasione dell'ordine.
+
+L'utente ripete i passi 3 e 4 finchè non indica che ha terminato.

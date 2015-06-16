@@ -90,6 +90,7 @@ public class ProductController {
 	
 	
 	public String buyProduct(){
+		System.out.println(this.quantity);
 		this.customerId = getCustomerIdParameter();
 		this.customer = this.customerFacade.findCustomer(this.customerId);
 		this.product = this.productFacade.findProduct(this.id);

@@ -1,0 +1,443 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.4.0
+-- Dumped by pg_dump version 9.4.0
+-- Started on 2015-06-17 00:03:50
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- TOC entry 181 (class 3079 OID 11855)
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 2066 (class 0 OID 0)
+-- Dependencies: 181
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 172 (class 1259 OID 106850)
+-- Name: openjpa_sequence_table; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE openjpa_sequence_table (
+    id smallint NOT NULL,
+    sequence_value bigint
+);
+
+
+ALTER TABLE openjpa_sequence_table OWNER TO postgres;
+
+--
+-- TOC entry 173 (class 1259 OID 106855)
+-- Name: tb_address; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tb_address (
+    id bigint NOT NULL,
+    city character varying(255) NOT NULL,
+    country character varying(255) NOT NULL,
+    state character varying(255) NOT NULL,
+    street character varying(255) NOT NULL,
+    zipcode character varying(255) NOT NULL
+);
+
+
+ALTER TABLE tb_address OWNER TO postgres;
+
+--
+-- TOC entry 174 (class 1259 OID 106863)
+-- Name: tb_admin; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tb_admin (
+    id bigint NOT NULL,
+    password character varying(255) NOT NULL,
+    username character varying(255) NOT NULL
+);
+
+
+ALTER TABLE tb_admin OWNER TO postgres;
+
+--
+-- TOC entry 175 (class 1259 OID 106873)
+-- Name: tb_customer; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tb_customer (
+    id bigint NOT NULL,
+    dateofbirth date NOT NULL,
+    dateofregistration timestamp without time zone NOT NULL,
+    firstname character varying(255) NOT NULL,
+    lastname character varying(255) NOT NULL,
+    password character varying(255) NOT NULL,
+    phonenumber character varying(255) NOT NULL,
+    username character varying(255) NOT NULL,
+    address_id bigint NOT NULL
+);
+
+
+ALTER TABLE tb_customer OWNER TO postgres;
+
+--
+-- TOC entry 177 (class 1259 OID 106886)
+-- Name: tb_order_line; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tb_order_line (
+    id bigint NOT NULL,
+    price real NOT NULL,
+    quantity integer NOT NULL,
+    order_id bigint,
+    product_id bigint
+);
+
+
+ALTER TABLE tb_order_line OWNER TO postgres;
+
+--
+-- TOC entry 176 (class 1259 OID 106881)
+-- Name: tb_orders; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tb_orders (
+    id bigint NOT NULL,
+    closedate timestamp without time zone,
+    creationdate timestamp without time zone NOT NULL,
+    evasiondate timestamp without time zone,
+    customer_id bigint
+);
+
+
+ALTER TABLE tb_orders OWNER TO postgres;
+
+--
+-- TOC entry 178 (class 1259 OID 106891)
+-- Name: tb_product; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tb_product (
+    id bigint NOT NULL,
+    code character varying(255) NOT NULL,
+    depositquantity integer NOT NULL,
+    description character varying(2000),
+    name character varying(255) NOT NULL,
+    price real NOT NULL
+);
+
+
+ALTER TABLE tb_product OWNER TO postgres;
+
+--
+-- TOC entry 179 (class 1259 OID 106899)
+-- Name: tb_provider; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tb_provider (
+    id bigint NOT NULL,
+    email character varying(255) NOT NULL,
+    name character varying(255) NOT NULL,
+    phonenumber character varying(255) NOT NULL,
+    vatin character varying(255) NOT NULL,
+    address_id bigint
+);
+
+
+ALTER TABLE tb_provider OWNER TO postgres;
+
+--
+-- TOC entry 180 (class 1259 OID 106907)
+-- Name: tb_provider_tb_product; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tb_provider_tb_product (
+    providers_id bigint,
+    products_id bigint
+);
+
+
+ALTER TABLE tb_provider_tb_product OWNER TO postgres;
+
+--
+-- TOC entry 2050 (class 0 OID 106850)
+-- Dependencies: 172
+-- Data for Name: openjpa_sequence_table; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY openjpa_sequence_table (id, sequence_value) FROM stdin;
+0	701
+\.
+
+
+--
+-- TOC entry 2051 (class 0 OID 106855)
+-- Dependencies: 173
+-- Data for Name: tb_address; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tb_address (id, city, country, state, street, zipcode) FROM stdin;
+151	fake	fake	fake	fake	00000
+152	fake1	fake1	fake1	fake1	22222
+\.
+
+
+--
+-- TOC entry 2052 (class 0 OID 106863)
+-- Dependencies: 174
+-- Data for Name: tb_admin; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tb_admin (id, password, username) FROM stdin;
+1	fake	fake
+\.
+
+
+--
+-- TOC entry 2053 (class 0 OID 106873)
+-- Dependencies: 175
+-- Data for Name: tb_customer; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tb_customer (id, dateofbirth, dateofregistration, firstname, lastname, password, phonenumber, username, address_id) FROM stdin;
+201	1989-01-14	2015-06-16 23:25:12.961	Massimo	Bielli	massimo	2222222222	massimo	152
+\.
+
+
+--
+-- TOC entry 2055 (class 0 OID 106886)
+-- Dependencies: 177
+-- Data for Name: tb_order_line; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tb_order_line (id, price, quantity, order_id, product_id) FROM stdin;
+651	25	3	601	52
+652	10	1	601	51
+654	10	10	603	51
+655	45	5	603	53
+653	25	1	602	52
+\.
+
+
+--
+-- TOC entry 2054 (class 0 OID 106881)
+-- Dependencies: 176
+-- Data for Name: tb_orders; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tb_orders (id, closedate, creationdate, evasiondate, customer_id) FROM stdin;
+601	2015-06-16 23:54:18.291	2015-06-16 23:53:37.151	\N	201
+603	\N	2015-06-16 23:54:53.272	\N	201
+602	2015-06-16 23:54:42.554	2015-06-16 23:54:28.546	2015-06-16 23:56:04.562	201
+\.
+
+
+--
+-- TOC entry 2056 (class 0 OID 106891)
+-- Dependencies: 178
+-- Data for Name: tb_product; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tb_product (id, code, depositquantity, description, name, price) FROM stdin;
+53	333	1000	mocassini neri	scarpe	45
+51	111	1500	cappello da baseball	cappello	10
+52	222	1999	occhiali da sole	occhiali	25
+\.
+
+
+--
+-- TOC entry 2057 (class 0 OID 106899)
+-- Dependencies: 179
+-- Data for Name: tb_provider; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tb_provider (id, email, name, phonenumber, vatin, address_id) FROM stdin;
+101	fake	fake	1111111111	11111	151
+\.
+
+
+--
+-- TOC entry 2058 (class 0 OID 106907)
+-- Dependencies: 180
+-- Data for Name: tb_provider_tb_product; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tb_provider_tb_product (providers_id, products_id) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1917 (class 2606 OID 106854)
+-- Name: openjpa_sequence_table_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY openjpa_sequence_table
+    ADD CONSTRAINT openjpa_sequence_table_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1919 (class 2606 OID 106862)
+-- Name: tb_address_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tb_address
+    ADD CONSTRAINT tb_address_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1921 (class 2606 OID 106870)
+-- Name: tb_admin_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tb_admin
+    ADD CONSTRAINT tb_admin_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1926 (class 2606 OID 106880)
+-- Name: tb_customer_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tb_customer
+    ADD CONSTRAINT tb_customer_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1933 (class 2606 OID 106890)
+-- Name: tb_order_line_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tb_order_line
+    ADD CONSTRAINT tb_order_line_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1929 (class 2606 OID 106885)
+-- Name: tb_orders_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tb_orders
+    ADD CONSTRAINT tb_orders_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1935 (class 2606 OID 106898)
+-- Name: tb_product_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tb_product
+    ADD CONSTRAINT tb_product_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1938 (class 2606 OID 106906)
+-- Name: tb_provider_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tb_provider
+    ADD CONSTRAINT tb_provider_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1923 (class 2606 OID 106872)
+-- Name: u_tb_dmin_username; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tb_admin
+    ADD CONSTRAINT u_tb_dmin_username UNIQUE (username);
+
+
+--
+-- TOC entry 1924 (class 1259 OID 106910)
+-- Name: i_tb_ctmr_address; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX i_tb_ctmr_address ON tb_customer USING btree (address_id);
+
+
+--
+-- TOC entry 1939 (class 1259 OID 106915)
+-- Name: i_tb_pdct_element; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX i_tb_pdct_element ON tb_provider_tb_product USING btree (products_id);
+
+
+--
+-- TOC entry 1940 (class 1259 OID 106916)
+-- Name: i_tb_pdct_providers_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX i_tb_pdct_providers_id ON tb_provider_tb_product USING btree (providers_id);
+
+
+--
+-- TOC entry 1936 (class 1259 OID 106914)
+-- Name: i_tb_pvdr_address; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX i_tb_pvdr_address ON tb_provider USING btree (address_id);
+
+
+--
+-- TOC entry 1930 (class 1259 OID 106912)
+-- Name: i_tb_r_ln_order; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX i_tb_r_ln_order ON tb_order_line USING btree (order_id);
+
+
+--
+-- TOC entry 1931 (class 1259 OID 106913)
+-- Name: i_tb_r_ln_product; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX i_tb_r_ln_product ON tb_order_line USING btree (product_id);
+
+
+--
+-- TOC entry 1927 (class 1259 OID 106911)
+-- Name: i_tb_rdrs_customer; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX i_tb_rdrs_customer ON tb_orders USING btree (customer_id);
+
+
+--
+-- TOC entry 2065 (class 0 OID 0)
+-- Dependencies: 5
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+-- Completed on 2015-06-17 00:03:51
+
+--
+-- PostgreSQL database dump complete
+--
+

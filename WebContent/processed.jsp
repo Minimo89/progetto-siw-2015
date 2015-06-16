@@ -11,7 +11,10 @@
 <body>
 <f:view>
 ordine evaso
-
+4<h:form>
+<div><h:commandLink value = "Torna agli ordini da evadere" action="#{orderController.findOrdersToBeFilled }"/> </div>
+</h:form>
+<div><a href="<c:url value="/faces/adminIndex.jsp"/>">Home</a></div>
 </f:view>
 </body>
 </html>

@@ -29,8 +29,7 @@ public class ProviderController {
 	private String state;
 	private String zipcode;
 	
-	@ManagedProperty(value = "productId")
-	private Long productId;
+	
 	
 	@EJB(beanName = "providerFacade")
 	private ProviderFacade providerFacade;
@@ -106,13 +105,7 @@ public class ProviderController {
 		this.provider = provider;
 	}
 
-	public Long getProductId() {
-		return productId;
-	}
-
-	public void setProductId(Long productId) {
-		this.productId = productId;
-	}
+	
 	
 	
 	
