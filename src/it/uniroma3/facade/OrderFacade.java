@@ -47,5 +47,23 @@ public class OrderFacade {
 	public void updateOrder(Orders order){
 		this.em.merge(order);
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Orders> getAllOrders(){
+		List<Orders> orders;
+		orders = this.em.createNamedQuery("getAllOrders").getResultList();
+		return orders;
+	}
+	
+	public Orders findOrder(Long id){
+		Orders order = this.em.find(Orders.class, id);
+		return order;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Orders> getOrdersToBeFilled(){
+		List<Orders> orders = this.em.createNamedQuery("getOrdersToBeFilled").getResultList();
+		return orders;
+	}
 
 }

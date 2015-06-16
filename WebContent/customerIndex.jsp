@@ -17,6 +17,9 @@
 		<h:commandButton value="Carrello" action="#{orderController.getCurrentOrder}">
 			<f:param name="customerId" value="#{customerController.id }"/>
 			</h:commandButton>
+		<h:commandButton value="Ordini" action="#{orderController.getCustomersOrders}">
+			<f:param name="customerId" value="#{customerController.id }"/>
+			</h:commandButton>
 		<h:commandButton value = "Logout" action = "#{customerController.logOut}"/>
 </div>
 </h:form>

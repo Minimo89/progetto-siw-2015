@@ -1,11 +1,16 @@
 package it.uniroma3.model;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "tb_provider")
+@NamedQueries({
+				@NamedQuery(name = "findAllProviders", query = "SELECT p FROM Provider p"),
+				@NamedQuery(name = "findProvidersProducts", query = "SELECT p FROM Provider p JOIN FETCH p.products WHERE p.id = :id")
+})
 public class Provider {
 	
 	@Id
@@ -40,6 +45,7 @@ public class Provider {
 		this.email = email;
 		this.phoneNumber = phoneNumber;
 		this.vatin = vatin;
+		this.products = new LinkedList<Product>();
 	}
 
 	public Long getId() {
@@ -90,6 +96,20 @@ public class Provider {
 		this.address = address;
 	}
 	
+	public void addProduct(Product product){
+		this.products.add(product);
+	}
+	
+	
+	
+	public List<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(List<Product> products) {
+		this.products = products;
+	}
+
 	public int hashCode(){
 		return this.name.hashCode() + this.vatin.hashCode();
 	}

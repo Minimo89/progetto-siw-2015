@@ -10,17 +10,7 @@
 </head>
 <body>
 <f:view>
-<h1>Prodotto aggiunto: ${productController.product.name}</h1>
-
-<h2>Dettagli:</h2>
-<div>Codice: ${productController.product.code}</div>
-<div>Prezzo: ${productController.product.price}</div>
-<div>Quantità: ${productController.product.depositQuantity}</div>
-<div>Descrizione: ${productController.product.description}</div>
-
-
-
-<div><a href="<c:url value="/faces/adminIndex.jsp"/>">Home</a></div>
+ordine evaso
 
 </f:view>
 </body>

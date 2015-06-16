@@ -11,7 +11,9 @@ import javax.persistence.*;
 @Table(name = "tb_orders")
 @NamedQueries({
 				@NamedQuery(name = "getCart", query = "SELECT o FROM Orders o WHERE o.closeDate is null and o.customer = :customer"),
-				@NamedQuery(name = "getCustomersOrders", query = "SELECT o FROM Orders o WHERE o.customer = :customer")
+				@NamedQuery(name = "getCustomersOrders", query = "SELECT o FROM Orders o WHERE o.customer = :customer"),
+				@NamedQuery(name = "getAllOrders", query = "SELECT o FROM Orders o"),
+				@NamedQuery(name = "getOrdersToBeFilled", query = "SELECT o FROM Orders o WHERE o.closeDate is not null and o.evasionDate is null")
 })
 public class Orders {
 	

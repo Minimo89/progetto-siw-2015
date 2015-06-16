@@ -10,18 +10,17 @@
 </head>
 <body>
 <f:view>
-<h1>Prodotto aggiunto: ${productController.product.name}</h1>
-
-<h2>Dettagli:</h2>
-<div>Codice: ${productController.product.code}</div>
-<div>Prezzo: ${productController.product.price}</div>
-<div>Quantità: ${productController.product.depositQuantity}</div>
-<div>Descrizione: ${productController.product.description}</div>
-
-
-
+<h1>${orderController.customer.firstName } ${orderController.customer.lastName }</h1>
+<h2>Indirizzo:</h2>
+	<div>Via: ${orderController.customer.address.street }</div>
+	<div>Città: ${orderController.customer.address.city }</div>
+	<div>Regione: ${orderController.customer.address.country }</div>
+	<div>Nazione: ${orderController.customer.address.state }</div>
+	<div>CAP: ${orderController.customer.address.zipcode }</div>
+<h:form>
+<div><h:commandLink value = "Torna agli Ordini" action="#{orderController.getAllOrders }"/> </div>
+</h:form>
 <div><a href="<c:url value="/faces/adminIndex.jsp"/>">Home</a></div>
-
 </f:view>
 </body>
 </html>

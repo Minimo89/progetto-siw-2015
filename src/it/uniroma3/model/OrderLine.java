@@ -75,6 +75,10 @@ public class OrderLine {
 		this.product = product;
 	}
 	
+	public Float getSubTotal(){
+		return new Float(this.price.doubleValue() * this.quantity.doubleValue());
+	}
+	
 	public int hashCode(){
 		return this.quantity.hashCode() + this.price.hashCode() + this.order.hashCode() + this.product.hashCode();
 	}

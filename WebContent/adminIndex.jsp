@@ -7,13 +7,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
-</head>
+</head> 
 <body>
 <f:view>
 <h1>Profilo di ${adminController.admin.username } (Admin)</h1>
 <h:form>
 <div><a href="<c:url value="/faces/newProduct.jsp"/>">Inserisci prodotto</a></div>
 <div><a href="<c:url value="/faces/newProvider.jsp"/>">Inserisci provider</a></div>
+<div><h:commandLink value = "Visualizza Ordini" action="#{orderController.getAllOrders }"/> </div>
+<div><h:commandLink value = "Ordini non evasi" action="#{orderController.findOrdersToBeFilled }"/> </div>
+<div><h:commandLink value = "Prodotti" action="#{productController.getAllProductsAdmin}"/> </div>
 <div>
 		<h:commandButton value = "Logout" action = "#{adminController.logOut }"/>
 </div>

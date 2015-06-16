@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import it.uniroma3.model.Product;
+import it.uniroma3.model.Provider;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -21,6 +22,11 @@ public class ProductFacade {
 		return product;
 	}
 	
+	public Product findProduct(String code){
+		Product product = (Product) this.em.createNamedQuery("findProductByCode").setParameter("code", code).getSingleResult();
+		return product;
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<Product> getAllProducts(){
 		List<Product> products = new LinkedList<Product>();
@@ -28,9 +34,25 @@ public class ProductFacade {
 		return products;
 	}
 	
+	public List<Provider> findProductsProviders(Long id){
+		Product product = (Product) this.em.createNamedQuery("getProductsProvider").setParameter("id", id).getSingleResult();
+		if(product == null){
+			return null;
+		}
+		else{
+		return product.getProviders();
+		}
+	}
+	
 	public Product findProduct(Long id){
 		Product product = this.em.find(Product.class, id);
 		return product;
 	}
+	
+	public void updateProduct(Product product){
+		this.em.merge(product);
+	}
+	
+	
 
 }

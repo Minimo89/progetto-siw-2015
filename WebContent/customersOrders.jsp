@@ -11,36 +11,30 @@
 <body>
 <f:view>
 <h:form>
-	<table>
+<table>
 	<thead>
 		<tr>
-		<th>Nome</th>
-		<th>Prezzo</th>
-		<th>Quantita</th>
-		<th></th>
-	</tr>
+			<td> ID Ordine</td>
+			<td> Data chiusura</td>
+			<td> Data evasione</td>
 	</thead>
 	<tbody>
-	<c:forEach var="orderLine" items="#{orderController.orderLines }">
+	<c:forEach var="order" items="#{orderController.orders }">
 		<tr>
-			<td>${orderLine.product.name }</td>
-			<td>${orderLine.product.price }</td>
-			<td>${orderLine.quantity }
+			<td>${order.id }</td>
+			<td>${order.closeDate }</td>
+			<td>${order.evasionDate }</td>
+			<td>
+				<h:commandButton value = "Dettagli" action = "#{orderController.findOrder }">
+						<f:param name="id" value="#{order.id }"/>
+				</h:commandButton>
 		</tr>
 	</c:forEach>
 	</tbody>
-	</table>
-	
-	Totale: ${orderController.total }
-	
-	<h:commandButton value="Conferma ordine" action="#{orderController.validateOrder }">
-		<f:param name="customerId" value="#{customerController.id }"/>
-	</h:commandButton>
-	
-	
-	<div><a href="<c:url value="/faces/customerIndex.jsp"/>">Home</a></div>
-</h:form>
+</table>
 
+<div><a href="<c:url value="/faces/customerIndex.jsp"/>">Home</a></div>
+</h:form>
 </f:view>
 </body>
 </html>

@@ -2,6 +2,7 @@ package it.uniroma3.controller;
 
 
 
+
 import java.util.List;
 import java.util.Map;
 
@@ -9,10 +10,14 @@ import it.uniroma3.facade.CustomerFacade;
 import it.uniroma3.facade.OrderFacade;
 import it.uniroma3.facade.OrderLineFacade;
 import it.uniroma3.facade.ProductFacade;
+import it.uniroma3.facade.ProviderFacade;
 import it.uniroma3.model.Customer;
 import it.uniroma3.model.OrderLine;
 import it.uniroma3.model.Orders;
 import it.uniroma3.model.Product;
+
+
+import it.uniroma3.model.Provider;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -30,6 +35,12 @@ public class ProductController {
 	private Float price;
 	private String code;
 	private Product product;
+	
+	private List<Provider> providers;
+	
+	private Provider provider;
+	
+	private String providerId;
 	
 	private List<Product> products;
 	
@@ -54,16 +65,27 @@ public class ProductController {
 	@EJB(beanName = "olFacade")
 	private OrderLineFacade orderLineFacade;
 	
+	@EJB(beanName = "providerFacade")
+	private ProviderFacade providerFacade;
+	
 	public String createProduct(){
 		this.product = this.productFacade.createProduct(this.name, this.code, this.description, this.depositQuantity, this.price);
 		return "faces/productAdded.jsp";
 	}
 	
+	
+	
 	public String getAllProductsLogged(){
 		this.products = this.productFacade.getAllProducts();
 		return "faces/productsLogged.jsp";
-		
 	}
+	
+	public String getAllProductsAdmin(){
+		this.products = this.productFacade.getAllProducts();
+		return "faces/productsAdmin.jsp";
+	}
+	
+	
 	
 	
 	
@@ -221,6 +243,46 @@ public class ProductController {
 	public void setOrders(List<Orders> orders) {
 		this.orders = orders;
 	}
+
+
+
+	public String getProviderId() {
+		return providerId;
+	}
+
+
+
+	public void setProviderId(String providerId) {
+		this.providerId = providerId;
+	}
+
+
+
+	public List<Provider> getProviders() {
+		return providers;
+	}
+
+
+
+	public void setProviders(List<Provider> providers) {
+		this.providers = providers;
+	}
+
+
+
+	public Provider getProvider() {
+		return provider;
+	}
+
+
+
+	public void setProvider(Provider provider) {
+		this.provider = provider;
+	}
+
+
+	
+
 	
 	
 

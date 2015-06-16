@@ -6,7 +6,11 @@ import java.util.*;
 
 @Entity
 @Table(name = "tb_product")
-@NamedQuery(name = "getAllProducts", query = "SELECT p FROM Product p")
+@NamedQueries({
+				@NamedQuery(name = "getAllProducts", query = "SELECT p FROM Product p"),
+				@NamedQuery(name = "findProductByCode", query = "SELECT p FROM Product p WHERE p.code = :code"),
+				@NamedQuery(name = "getProductsProvider", query = "SELECT p FROM Product p JOIN FETCH p.providers WHERE p.id = :id")
+})
 public class Product {
 	
 	@Id
@@ -98,6 +102,10 @@ public class Product {
 
 	public void setProviders(List<Provider> providers) {
 		this.providers = providers;
+	}
+	
+	public void addProvider(Provider provider){
+		this.providers.add(provider);
 	}
 	
 	public int hashCode(){

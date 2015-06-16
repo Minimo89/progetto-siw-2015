@@ -1,6 +1,10 @@
 package it.uniroma3.controller;
 
+
+
+import it.uniroma3.facade.ProductFacade;
 import it.uniroma3.facade.ProviderFacade;
+
 import it.uniroma3.model.Provider;
 
 import javax.ejb.EJB;
@@ -8,6 +12,7 @@ import javax.ejb.EJB;
 
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 
 @ManagedBean
 public class ProviderController {
@@ -24,11 +29,17 @@ public class ProviderController {
 	private String state;
 	private String zipcode;
 	
+	@ManagedProperty(value = "productId")
+	private Long productId;
+	
 	@EJB(beanName = "providerFacade")
 	private ProviderFacade providerFacade;
 	
+	@EJB(beanName = "pFacade")
+	private ProductFacade productFacade;
+	
 	public String createProvider(){
-		this.provider = this.providerFacade.createProvider(this.name, this.email, this.phoneNumber, this.vatin, this.street, this.city, this.country, this.state, this.zipcode);
+		this.provider = this.providerFacade.createProvider(name, email, phoneNumber, vatin, street, city, country, state, zipcode);
 		return "faces/providerAdded.jsp";
 	}
 	
@@ -93,6 +104,14 @@ public class ProviderController {
 
 	public void setProvider(Provider provider) {
 		this.provider = provider;
+	}
+
+	public Long getProductId() {
+		return productId;
+	}
+
+	public void setProductId(Long productId) {
+		this.productId = productId;
 	}
 	
 	

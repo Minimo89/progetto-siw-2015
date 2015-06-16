@@ -10,17 +10,29 @@
 </head>
 <body>
 <f:view>
-<h1>Prodotto aggiunto: ${productController.product.name}</h1>
-
-<h2>Dettagli:</h2>
-<div>Codice: ${productController.product.code}</div>
-<div>Prezzo: ${productController.product.price}</div>
-<div>Quantità: ${productController.product.depositQuantity}</div>
-<div>Descrizione: ${productController.product.description}</div>
-
-
-
-<div><a href="<c:url value="/faces/adminIndex.jsp"/>">Home</a></div>
+<h:form>
+	<table>
+		<thead>
+			<tr>
+				<td>ID Ordine</td>
+				<td>ID Cliente</td>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach var="order" items="#{orderController.orders }">
+				<tr>
+					<td>${order.id }</td>
+					<td>${order.customer.id }</td>
+					<td><h:commandLink value="Evadi Ordine" action="#{orderController.processOrder }">
+							<f:param name="id" value="#{order.id }"/>
+					</h:commandLink> </td>
+					
+			</c:forEach>
+		</tbody>
+	</table>
+	
+	<div><a href="<c:url value="/faces/adminIndex.jsp"/>">Home</a></div>
+</h:form>
 
 </f:view>
 </body>

@@ -39,6 +39,8 @@
 				cols="20"
 				rows="5"/>
 	</div>
+	
+	
 	<div><h:commandButton value="Conferma" action="#{productController.createProduct}"/></div>
 </h:form>
 

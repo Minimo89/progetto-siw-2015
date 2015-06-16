@@ -64,9 +64,11 @@
 				requiredMessage="Il CAP è obbligatorio"
 				id="zipcode"/> <h:message for="zipcode"/>
 	</div>
-	<div><h:commandButton value = "Conferma" action = "#{providerController.createProvider}"/></div>
+	<div><h:commandButton value = "Conferma" action = "#{providerController.createProvider}">
+			<f:param name="productId" value="#{productController.id }"/>
+	</h:commandButton></div>
 	</h:form>
-
+	
 </f:view>
 </body>
 </html>
