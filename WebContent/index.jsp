@@ -7,9 +7,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<link href = "css/bootstraps.css" rel="stylesheet">
 </head>
 <body>
 <f:view>
+	
 	<div><a href="<c:url value="/faces/newCustomer.jsp" />">Registrazione cliente</a></div>
 	<div><a href="<c:url value="/faces/customerLogin.jsp" />">Login cliente</a></div>
 	<div><a href="<c:url value="/faces/newAdmin.jsp" />">Registrazione admin</a></div>
